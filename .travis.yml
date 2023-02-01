@@ -13,8 +13,15 @@ script:
 after_success:
   - docker build -t blaucel/multi-client ./client
   - docker build -t blaucel/multi-nginx ./nginx
-  - docker build -t blaucel/multi-serves ./server
+  - docker build -t blaucel/multi-server ./server
   - docker build -t blaucel/multi-worker ./worker
-#Subir todo a Docker Hub
+# Logeamos en docker CLI, lo haremos con variables ambientales de Travis CI
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
-#Decirle a Elastic Beanstalk que actualice
+# Subir todas las imágenes a Docker Hub
+- docker push blaucel/multi-client
+- docker push blaucel/multi-nginx
+- docker push blaucel/multi-server
+- docker push blaucel/multi-worker
+
+# Decirle a Elastic Beanstalk que actualice
