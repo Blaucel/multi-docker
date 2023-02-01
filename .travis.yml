@@ -3,18 +3,22 @@
 sudo: required
 services:
   - docker
+  
 # Montamos la version test del proyecto de React
 before_install:
   - docker build -t blaucel/react-test -f ./client/Dockerfile.dev ./client
+
 #Corremos los tests
 script:
   - docker run -e CI=true blaucel/react-test npm test
+
 # Montamos las verisones de producción de todos los proyectos del multicontenedor
 after_success:
   - docker build -t blaucel/multi-client ./client
   - docker build -t blaucel/multi-nginx ./nginx
   - docker build -t blaucel/multi-server ./server
   - docker build -t blaucel/multi-worker ./worker
+
 # Logeamos en docker CLI, lo haremos con variables ambientales de Travis CI
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
