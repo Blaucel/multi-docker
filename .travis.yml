@@ -1,0 +1,20 @@
+# Automatización mediante travis
+# Especificamos docker como dependencia
+sudo: required
+services:
+  - docker
+# Montamos la versiçon test del proyecto de React
+before_install:
+  - docker build -t blaucel/react-test -f ./client/Dockerfile.dev ./client
+#Corremos los tests
+script:
+  - docker run -e CI=true blaucel/react-test npm test
+# Montamos las verisones de producción de todos los proyectos del multicontenedor
+after_success:
+  - docker build -t blaucel/multi-client ./client
+  - docker build -t blaucel/multi-nginx ./nginx
+  - docker build -t blaucel/multi-serves ./server
+  - docker build -t blaucel/multi-worker ./worker
+#Subir todo a Docker Hub
+
+#Decirle a Elastic Beanstalk que actualice
