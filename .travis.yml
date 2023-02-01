@@ -3,7 +3,7 @@
 sudo: required
 services:
   - docker
-# Montamos la versiçon test del proyecto de React
+# Montamos la version test del proyecto de React
 before_install:
   - docker build -t blaucel/react-test -f ./client/Dockerfile.dev ./client
 #Corremos los tests
