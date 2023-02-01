@@ -3,7 +3,7 @@
 sudo: required
 services:
   - docker
-  
+
 # Montamos la version test del proyecto de React
 before_install:
   - docker build -t blaucel/react-test -f ./client/Dockerfile.dev ./client
@@ -20,12 +20,12 @@ after_success:
   - docker build -t blaucel/multi-worker ./worker
 
 # Logeamos en docker CLI, lo haremos con variables ambientales de Travis CI
-- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
 # Subir todas las imágenes a Docker Hub
-- docker push blaucel/multi-client
-- docker push blaucel/multi-nginx
-- docker push blaucel/multi-server
-- docker push blaucel/multi-worker
+  - docker push blaucel/multi-client
+  - docker push blaucel/multi-nginx
+  - docker push blaucel/multi-server
+  - docker push blaucel/multi-worker
 
 # Decirle a Elastic Beanstalk que actualice
