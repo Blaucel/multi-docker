@@ -1,11 +1,11 @@
 1.	version: "3"
 2.	services:
 3.	  client:
-4.	    image: "emilioroldan/multi-client-10-14"
+4.	    image: "emilioroldan/multi-client"
 5.	    mem_limit: 128m
 6.	    hostname: client
 7.	  server:
-8.	    image: "emilioroldan/multi-server-10-14"
+8.	    image: "emilioroldan/multi-server"
 9.	    mem_limit: 128m
 10.	    hostname: api
 11.	    environment:
@@ -17,14 +17,14 @@
 17.	      - PGPASSWORD=$PGPASSWORD
 18.	      - PGPORT=$PGPORT
 19.	  worker:
-20.	    image: "emilioroldan/multi-worker-10-14"
+20.	    image: "emilioroldan/multi-worker"
 21.	    mem_limit: 128m
 22.	    hostname: worker
 23.	    environment:
 24.	      - REDIS_HOST=$REDIS_HOST
 25.	      - REDIS_PORT=$REDIS_PORT
 26.	  nginx:
-27.	    image: "emilioroldan/multi-nginx-10-14"
+27.	    image: "emilioroldan/multi-nginx"
 28.	    mem_limit: 128m
 29.	    hostname: nginx
 30.	    ports:
