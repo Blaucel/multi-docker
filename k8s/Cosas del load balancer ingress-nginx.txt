@@ -1,0 +1,10 @@
+Vamos a usar el load balancer ingress-nginx, una versión reada por la comunidad y no la oficial, que tiene un nombre muy parecido
+Esta es su página oficial:
+https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+
+Este es el comando que usamos en la consola de WSL2 para instalarlo.
+Usando WSL2 con la consola de docker no necesitamos nada más.
+En otros entornos, como minikube, pueden haber más comandos de config.
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.5.1/deploy/static/provider/cloud/deploy.yaml
+
+Lo vamos a configurar en ingress-service.yaml
